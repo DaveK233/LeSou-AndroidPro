@@ -5,20 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
-    <SearchView
-        android:id="@+id/m_search"
-        android:iconifiedByDefault="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </SearchView>
+    tools:context=".Favorite"
+    tools:showIn="@layout/app_bar_favorite">
 
     <ListView
-        app:layout_constraintTop_toBottomOf="@id/m_search"
-        android:id="@+id/list_main"
+        android:id="@+id/list_fav"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

@@ -6,11 +6,11 @@
     <item android:title="功能">
         <menu>
             <item
-                android:id="@+id/nav_search"
+                android:id="@+id/nav_search_fav"
                 android:icon="@drawable/toolbar_find"
                 android:title="搜索" />
             <item
-                android:id="@+id/nav_favourite"
+                android:id="@+id/nav_favourite_fav"
                 android:icon="@drawable/toolbar_favorites"
                 android:title="收藏夹" />
         </menu>
@@ -19,11 +19,11 @@
     <item android:title="帮助">
         <menu>
             <item
-                android:id="@+id/nav_about"
+                android:id="@+id/nav_about_fav"
                 android:icon="@drawable/toolbar_get_info"
                 android:title="关于" />
             <item
-                android:id="@+id/nav_declare"
+                android:id="@+id/nav_declare_fav"
                 android:icon="@drawable/toolbar_delete"
                 android:title="免责声明" />
         </menu>

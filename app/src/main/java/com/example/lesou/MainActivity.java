@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         mListView = (ListView) findViewById(R.id.list_main);
         mListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mStrs));
         mListView.setTextFilterEnabled(true);
-        registerForContextMenu(mListView);
+        this.registerForContextMenu(mListView);
         mSearchView.setQueryHint("默认使用线路1进行搜索，右上角切换备线");
 
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -85,12 +86,24 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        item_id = info.position;
-        //设置菜单布局
-        MenuInflater inflater = new MenuInflater(MainActivity.this);
-        inflater.inflate(R.menu.main,menu);
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.setHeaderTitle("收藏");
+        menu.add(1,1,1,"添加到收藏夹");
+//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+//        item_id = info.position;
+//        //设置菜单布局
+//        MenuInflater inflater = new MenuInflater(MainActivity.this);
+//        inflater.inflate(R.menu.m,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case 1:
+                Toast.makeText(MainActivity.this, "已添加到收藏夹", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 
     @Override

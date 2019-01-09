@@ -1,6 +1,7 @@
 package com.example.lesou;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,9 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class Favorite extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private Uri uri;
+    private String addr = "http://www.baidu.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,7 @@ public class Favorite extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.favorite, menu);
+        getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
@@ -68,8 +73,13 @@ public class Favorite extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_line1) {
-            return true;
+        if (id == R.id.id_browser_open) {
+            uri = Uri.parse(addr);
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            intent.setData(uri);
+            intent.setClassName("com.android.browser", "com.android.browser.BrowserActivity");
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

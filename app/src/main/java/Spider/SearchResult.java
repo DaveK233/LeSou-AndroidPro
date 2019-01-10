@@ -4,11 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class SearchResult{
-    public static ArrayList<Resource> resources = new ArrayList<Resource>();
+    public ArrayList<Resource> resources = new ArrayList<Resource>();
 
-    public static void serialize(String file_name){
+    public void serialize(String file_name){
         try {
-            File file = new File("./saved/" + file_name);
+            File file = new File("/storage/emulated/0/Lesou/saved/"+file_name);
             file.getParentFile().mkdirs();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
             objectOutputStream.writeObject(resources);
@@ -19,9 +19,9 @@ public class SearchResult{
         }
     }
 
-    public static void deserialize(String file_name){
+    public void deserialize(String file_name){
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(new File("./saved/" + file_name)));
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(new File("/storage/emulated/0/Lesou/saved/" + file_name)));
             resources = (ArrayList<Resource>)objectInputStream.readObject();
             objectInputStream.close();
         }

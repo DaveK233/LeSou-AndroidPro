@@ -180,25 +180,25 @@ public class Spider {
         return null;
     }
 
-    public static void main(String[] args) {
-        ArrayList<Resource> resources = searchResource("魔兽争霸", 0, 1);
-//        System.out.println("Slime result size : " + resources.size());
-//        for(Resource temp : resources)
+//    public static void main(String[] args) {
+//        ArrayList<Resource> resources = searchResource("魔兽争霸", 0, 1);
+////        System.out.println("Slime result size : " + resources.size());
+////        for(Resource temp : resources)
+////            temp.print();
+//        favourites.resources = resources;
+//        SearchResult.serialize("Result");
+//        SearchResult.resources.clear();
+////        resources = searchResource("魔兽争霸", 1, 1);
+////        System.out.println("Pansou result size : " + resources.size());
+////        for(Resource temp : resources)
+////            temp.print();
+////
+////        resources = searchResource("魔兽争霸", 2, 1);
+////        System.out.println("Pansousou result size : " + resources.size());
+////        for(Resource temp : resources)
+////            temp.print();
+//        SearchResult.deserialize("Result");
+//        for(Resource temp : SearchResult.resources)
 //            temp.print();
-        SearchResult.resources = resources;
-        SearchResult.serialize("Result");
-        SearchResult.resources.clear();
-//        resources = searchResource("魔兽争霸", 1, 1);
-//        System.out.println("Pansou result size : " + resources.size());
-//        for(Resource temp : resources)
-//            temp.print();
-//
-//        resources = searchResource("魔兽争霸", 2, 1);
-//        System.out.println("Pansousou result size : " + resources.size());
-//        for(Resource temp : resources)
-//            temp.print();
-        SearchResult.deserialize("Result");
-        for(Resource temp : SearchResult.resources)
-            temp.print();
-    }
+//    }
 }

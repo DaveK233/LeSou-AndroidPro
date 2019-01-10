@@ -16,4 +16,9 @@
         android:orderInCategory="100"
         android:title="@string/action_line3"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_switch"
+        android:orderInCategory="100"
+        android:title="隐藏/显示失效链接"
+        app:showAsAction="never"/>
 </menu>

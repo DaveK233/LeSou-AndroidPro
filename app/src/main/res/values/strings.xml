@@ -11,5 +11,5 @@
     <string name="action_line3">线路3</string>
     <string name="title_activity_pansou_search">PansouSearch</string>
     <string name="title_activity_slime_search">SlimeSearch</string>
-    <string name="title_activity_favorite">Favorite</string>
+    <string name="title_activity_favorite">收藏夹</string>
 </resources>

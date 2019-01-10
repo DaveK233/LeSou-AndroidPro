@@ -7,11 +7,11 @@
         <menu>
             <item
                 android:id="@+id/nav_search_fav"
-                android:icon="@drawable/toolbar_find"
+                android:icon="@drawable/search_new"
                 android:title="搜索" />
             <item
                 android:id="@+id/nav_favourite_fav"
-                android:icon="@drawable/toolbar_favorites"
+                android:icon="@drawable/favor_new"
                 android:title="收藏夹" />
         </menu>
     </item>
@@ -20,11 +20,11 @@
         <menu>
             <item
                 android:id="@+id/nav_about_fav"
-                android:icon="@drawable/toolbar_get_info"
+                android:icon="@drawable/about_new"
                 android:title="关于" />
             <item
                 android:id="@+id/nav_declare_fav"
-                android:icon="@drawable/toolbar_delete"
+                android:icon="@drawable/text"
                 android:title="免责声明" />
         </menu>
     </item>

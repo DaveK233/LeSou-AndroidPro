@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ItemDetail">
+
+    <ListView
+        android:id="@+id/id_details_list"
+        android:layout_width="match_parent"
+        android:layout_height="326dp"
+        android:divider="#00000000"
+        android:dividerHeight="10dp"
+        android:padding="15dp">
+    </ListView>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/aaa"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/id_details_list"-->
+        <!--android:padding="10dp"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+
+
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/aaa"
+        app:layout_constraintTop_toBottomOf="@id/id_details_list"
+        android:paddingTop="5dp"
+        android:layout_width="match_parent"
+        android:paddingHorizontal="80dp"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/id_copy"
+            android:text="复制链接"
+            android:layout_width="match_parent"
+            android:background="@drawable/btn_03"
+            android:layout_margin="5dp"
+            android:textColor="#FFFFFF"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/id_to_fav"
+            android:layout_below="@id/id_copy"
+            android:text="添加到收藏夹"
+            android:layout_width="match_parent"
+            android:background="@drawable/btn_02"
+            android:textColor="#FFFFFF"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/id_open_in_browser"
+            android:layout_below="@id/id_to_fav"
+            android:layout_margin="5dp"
+            android:text="在浏览器中打开"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

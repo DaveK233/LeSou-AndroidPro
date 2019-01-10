@@ -111,7 +111,7 @@ public class PanSou {
                 return;
 //            System.out.println(page);
 
-            String []resourceList = page.split("},\\{");
+            String []resourceList = page.split("[}][,][{]");
             ArrayList<GetPiece> getPieces = new ArrayList<>();
 
             for(String piece : resourceList){

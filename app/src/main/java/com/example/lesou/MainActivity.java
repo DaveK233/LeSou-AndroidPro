@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity
 
     private int engineType = 1;
     private long mPressedTime;
+    private int listPos;
     private int item_id;
     private int pageNum = 1;
     private boolean statusHidden = false;
@@ -68,20 +69,20 @@ public class MainActivity extends AppCompatActivity
         mSearchView = (SearchView)findViewById(R.id.m_search);
         mListView = (ListView) findViewById(R.id.list_main);
         mSwitch = (MenuItem) findViewById(R.id.action_switch);
-//        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(AbsListView view, int scrollState) {
-//                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-//                    loadRemnantListItem();
-//                }
-//            }
-//
-//            @Override
-//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-//
-//            }
-//
-//        });
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    listPos = mListView.getFirstVisiblePosition();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+
+        });
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity
                 adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, resultStr);
                 mListView.setAdapter(adapter);
                 mListView.setTextFilterEnabled(false);
+                listPos = mListView.getFirstVisiblePosition();
                 if(resultStr.size() == 0) {
                     Toast.makeText(MainActivity.this, "哇哦，没有结果嗷…再搜搜？", Toast.LENGTH_SHORT).show();
                 }
@@ -204,6 +206,7 @@ public class MainActivity extends AppCompatActivity
         adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, resultStr);
         mListView.setAdapter(adapter);
         mListView.setTextFilterEnabled(false);
+        mListView.setSelection(listPos);
         if(resultStr.size()==0) {
             Toast.makeText(MainActivity.this, "喔唷，还是没有鸭！再刷刷？", Toast.LENGTH_SHORT).show();
         }

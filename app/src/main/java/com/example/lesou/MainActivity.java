@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
         mSearchView = (SearchView)findViewById(R.id.m_search);
         mListView = (ListView) findViewById(R.id.list_main);
         mSwitch = (MenuItem) findViewById(R.id.action_switch);
+        mSearchView.clearFocus();
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -87,12 +88,13 @@ public class MainActivity extends AppCompatActivity
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mSearchView.clearFocus();
                 item_id = position;
                 if(statusHidden)
                     selectedResource = getValidRes(result, item_id);
                 else
                     selectedResource = result.get(item_id);
-                if(!selectedResource.getEffective().equals("无效")) {
+                if(selectedResource.getEffective().equals("有效")) {
                     Intent intent = new Intent(MainActivity.this, ItemDetail.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("effective", selectedResource.getEffective());
@@ -125,11 +127,11 @@ public class MainActivity extends AppCompatActivity
                 resultStr.clear();
                 for(int i = 0; i < temp.size(); i++) {
                     if(temp.get(i) != null) {
-                        if(temp.get(i).getEffective().equals("无效")) {
+                        if(temp.get(i).getEffective().equals("无效") || temp.get(i).getEffective().equals("未知")) {
                             if(statusHidden) {
                                 continue;
                             }
-                            resultStr.add(temp.get(i).getName() + "（链接已失效）");
+                            resultStr.add(temp.get(i).getName() + "（链接可能已失效）");
                             result.add(temp.get(i));
                         }
                         else {
@@ -183,6 +185,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadRemnantListItem() {
+        mSearchView.clearFocus();
         pageNum++;
         ArrayList<Resource> temp = Spider.searchResource(queryStr, engineType, pageNum);
         if(temp == null) {
@@ -190,11 +193,11 @@ public class MainActivity extends AppCompatActivity
         }
         for(int i = 0; i < temp.size(); i++) {
             if(temp.get(i) != null) {
-                if(temp.get(i).getEffective().equals("无效")) {
+                if(temp.get(i).getEffective().equals("无效") || temp.get(i).getEffective().equals("未知")) {
                     if(statusHidden) {
                         continue;
                     }
-                    resultStr.add(temp.get(i).getName() + "（链接已失效）");
+                    resultStr.add(temp.get(i).getName() + "（链接可能已失效）");
                     result.add(temp.get(i));
                 }
                 else {
@@ -215,6 +218,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
+        mSearchView.clearFocus();
         menu.setHeaderTitle("操作");
         menu.add(1,1,1,"添加到收藏夹");
         menu.add(1,2,1,"复制链接地址");
@@ -227,6 +231,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        mSearchView.clearFocus();
         switch(item.getItemId()) {
             case 1:
                 Toast.makeText(MainActivity.this, "已添加到收藏夹", Toast.LENGTH_SHORT).show();
@@ -246,6 +251,7 @@ public class MainActivity extends AppCompatActivity
 //        } else {
 //            super.onBackPressed();
 //        }
+//        mSearchView.clearFocus();
         long mNowTime = System.currentTimeMillis();//获取第一次按键时间
         if((mNowTime - mPressedTime) > 2000){//比较两次按键时间差
             Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
@@ -270,6 +276,7 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        mSearchView.clearFocus();
         int id = item.getItemId();
 //        mSearchView = (SearchView)findViewById(R.id.m_search);
 
@@ -294,11 +301,11 @@ public class MainActivity extends AppCompatActivity
             resultStr.clear();
             for(int i = 0; i < result.size(); i++) {
                 if(result.get(i) != null) {
-                    if(result.get(i).getEffective().equals("无效")) {
+                    if(result.get(i).getEffective().equals("无效") || result.get(i).getEffective().equals("未知")) {
                         if(statusHidden) {
                             continue;
                         }
-                        resultStr.add(result.get(i).getName() + "（链接已失效）");
+                        resultStr.add(result.get(i).getName() + "（链接可能已失效）");
                     }
                     else {
                         resultStr.add(result.get(i).getName());
@@ -317,6 +324,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        mSearchView.clearFocus();
         int id = item.getItemId();
         if(id == R.id.nav_search) {
 
@@ -333,7 +341,7 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
+                    mSearchView.clearFocus();
                 }
             });
             builder.show();
@@ -345,7 +353,7 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
+                    mSearchView.clearFocus();
                 }
             });
             builder.show();
@@ -360,7 +368,7 @@ public class MainActivity extends AppCompatActivity
         index++;
         for(Resource temp : resources)
         {
-            if(!temp.getEffective().equals("无效")){
+            if(temp.getEffective().equals("有效")){
                 index--;
                 if(index == 0){
                     return temp;

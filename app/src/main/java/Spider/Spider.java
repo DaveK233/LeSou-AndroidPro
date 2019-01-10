@@ -68,12 +68,10 @@ public class Spider {
         result.setUrl(url.toString());
         String page = getPage(url);
 
-        if(page == null || page.contains("链接不存在") || page.contains("页面不存在") || page.contains("链接已过期")) {
+        if(page == null || page.contains("链接不存在") || page.contains("页面不存在") || page.contains("链接已过期") || page.contains("已经被取消了")) {
             result.setEffective("无效");
             return result;
         }
-
-        result.setEffective("有效");
 
         Pattern pattern = Pattern.compile("<title>.*?_免费高速", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(page);
@@ -123,6 +121,11 @@ public class Spider {
         }
 
         result.setSize("未知");
+
+        if(result.getName().equals("未知"))
+            result.setEffective("未知");
+        else
+            result.setEffective("有效");
         return result;
     }
 
